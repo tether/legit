@@ -1,14 +1,30 @@
-var each = require('each');
+var _ = require('underscore');
+
 /**
  * Expose 'legit'
  */
 module.exports = Legit;
 
+// TODO: Make mixin component.
+function mixin(obj) {
+  for (var key in Legit.prototype) {
+    obj[key] = Legit.prototype[key];
+  }
 
-function Legit() {
-  this.invalidAttributes = [];
+  return obj;
 };
 
+
+/**
+ * Legit constructor. Mixes it's functions into the object.
+ */
+function Legit(obj) {
+  if (obj) {
+    return mixin(obj);
+  }
+};
+
+Legit.prototype.invalidAttributes = [];
 
 /**
  * Validates the entire model. Loops through all attributes
@@ -20,7 +36,7 @@ function Legit() {
  * @api public
  */
 Legit.prototype.validate = function() {
-  each(this.validation, function (key, value) {
+  _.each(this.validation, function (value, key) {
     this.validateAttribute(key);
   }, this);
 
@@ -51,7 +67,7 @@ Legit.prototype.validateAttribute = function(attr) {
   // there are multiple validations that need to be run for this attribute.
   // So loop through and run each of them.
   if (attrValidation instanceof Array) {
-    each(attrValidation, function (attrValidation) {
+    _.each(attrValidation, function (attrValidation) {
       this.performValidation(attrValidation, currentAttrVal, attr, true);
     }, this);
   } else {
@@ -82,7 +98,7 @@ Legit.prototype.isLegit = function() {
    *                                 triggering of events.
    * @api private
    */
-Legit.prototype.performValidation = function(first_argument) {
+Legit.prototype.performValidation = function(attrValidation, currentAttrVal, attr, silent) {
   // Only validate if there is either no "onlyWhen" attribute
   // or the "onlyWhen" function returns true.
   if (this.shouldValidate(attrValidation)) {
@@ -139,7 +155,7 @@ Legit.prototype.trackInvalidAttribute = function(attr, msg) {
  * @param  {String} attr The attribute name.
  * @param  {String} msg  The error message.
  */
-Legit.prototype.trackValidAttribute = function(attr) {
+Legit.prototype.trackValidAttribute = function(attr, msg) {
   var invalidAttrObject = {
     attr: attr,
     msg: msg
@@ -198,7 +214,7 @@ Legit.prototype.triggerValidationEvents = function() {
  */
 Legit.prototype.shouldValidate = function(attrValidation) {
   // Does 'onlyWhen' the key exist in this validation?
-  if ('onlyWhen' in attrValidation) {
+  if (attrValidation.onlyWhen) {
     // Is the "onlyWhen" value a string? If so, it's a function on this model to
     // be called.
     if (typeof attrValidation.onlyWhen === 'string') {

@@ -5,9 +5,11 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "bredele/each": "*"
+    "components/underscore": "*"
   },
-  "development": {},
+  "development": {
+    "component/assert": "*"
+  },
   "license": "MIT",
   "main": "index.js",
   "scripts": [
