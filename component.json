@@ -1,0 +1,17 @@
+{
+  "name": "legit",
+  "repo": "petrofeed/legit",
+  "description": "Keeping your Javascript models legit since 2013.",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "bredele/each": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ],
+  "remotes": []
+}
