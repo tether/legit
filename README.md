@@ -101,3 +101,90 @@ This function then triggers some of the following events depending on the state 
 `validated:invalidAttribute`: is triggered when a single attribute is validated and found to be invalid. It is passed the model, the attribute name and the error message.
 
 `validated:validAttribute`: is triggered when a single attribute is validated and found to be valid. It is passed the model and the attribute name.
+
+## Default validators
+
+       /**
+       * Check if this value exists or not.
+       * 
+       * @param  {?} value       The value to check.
+       * 
+       * @return {Boolean}       False if the value is falsy, true if it's truthy.
+       */
+      required: function (value) {
+        return this.validateHasValue(value);
+      },
+
+
+      /**
+       * Check if this value looks like a email.
+       * 
+       * @param  {?} value       The value to check.
+       * 
+       * @return {Boolean}       True if the value looks like a email, false if not.
+       */
+      email: function (value) {
+        return this.validateHasValue(value) && value.toString().match(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i)
+      },
+
+      
+      /**
+       * Check if this value looks like a url.
+       * 
+       * @param  {?} value       The value to check.
+       * 
+       * @return {Boolean}       True if the value looks like a url, false if not.
+       */
+      url: function (value) {
+        return this.validateHasValue(value) && value.toString().match(/^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i)
+      },
+
+      
+      /**
+       * Check if this value looks like a url.
+       * 
+       * @param  {?} value      The value to check.
+       * 
+       * @return {Boolean}      True if the value matches any digit(s) (i.e. 0-9), false if not.
+       */
+      digits: function (value) {
+        return this.validateHasValue(value) && value.toString().match(/^\d+$/);
+      },
+        
+      
+      /**
+       * Check if this value looks like a url.
+       * 
+       * @param  {?} value          The value to check.
+       * 
+       * @return {Boolean}          True if the value matched any number (e.g. 100.000), false if not.
+       */
+      number: function (value) {
+        return this.validateHasValue(value) && value.toString().match(/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/);
+      },
+
+      /**
+       * Check if this value is at least a certain length.
+       * 
+       * @param  {?} value                   The value to check.
+       * @param  {Object} attrValidation     The validation object.
+       * 
+       * @return {Boolean}                   True if the value is at least as long as the
+       *                                     threshhold value found in the attrValidation
+       *                                     'validationArg' key.
+       */
+      minLength: function (value, attrValidation) {
+        return value.toString().length >= attrValidation.validatorArg;
+      },
+
+      /**
+       * Check if the value is equal to another model attrbute's value.
+       * 
+       * @param  {?} value                The value to check.
+       * @param  {Object} attrValidation  The validation object.
+       * 
+       * @return {Boolean}                Whether or not the two attribute values are equal.      
+       */
+      equalTo: function (value, attrValidation) {
+        return value ===  this.get(attrValidation.validatorArg);
+      }
