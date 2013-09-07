@@ -14,7 +14,7 @@ To use Legit, all you need to do is mix the object into your model's prototype a
 For example, with Backbone.js you might extend your model's prototype with Legit using `_.extend()` like so:
 
     // Make this model "validatable".
-    _.extend(UserModel.prototype, legitValidation);
+    Legit(UserModel.prototype);
 
 Then you could define your validations like this:
 
