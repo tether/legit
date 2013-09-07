@@ -40,3 +40,33 @@ Then you could define your validations like this:
         ]
       }
     });
+
+## Defining Validations
+
+To define validations, you must add a `validation:` key to in model which will contain an object defining your validations. Inside this object, each key should be the name of a model attribute to validate.
+
+The value for the key could be a single validation object, or an array containing multiple validation objects.
+
+    // Single validation for the 'password' attribute.
+    validation: {
+        password: {
+            validator: 'required',
+            msg: "You must provide a password."
+        }
+    }
+
+    // Multiple validations for the 'password' attribute.
+    validation: {
+        password: [
+            {
+                validator: 'required',
+                msg: "You must provide a password."
+            },
+            {
+                validator: 'minLength'
+                vaidatorArg: 8,
+                msg: "Your password must be a minimum of 8 characters long."
+            }
+        ]
+    }
+    
