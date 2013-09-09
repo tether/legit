@@ -68,11 +68,11 @@ Legit.prototype.validateAttribute = function(attr) {
   // So loop through and run each of them.
   if (attrValidation instanceof Array) {
     _.each(attrValidation, function (attrValidation) {
-      this.performValidation(attrValidation, currentAttrVal, attr, true);
+      this.performValidation(attrValidation, currentAttrVal, attr, false);
     }, this);
   } else {
     // Otherwise, there is only a single validation for this attribute.
-    this.performValidation(attrValidation, currentAttrVal, attr, true);
+    this.performValidation(attrValidation, currentAttrVal, attr, false);
   }
 };
 
