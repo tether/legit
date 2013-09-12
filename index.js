@@ -26,6 +26,13 @@ function Legit(obj) {
 
 Legit.prototype.invalidAttributes = [];
 
+/*
+ * Hammer Dance!
+ */
+Legit.prototype.tooLegitToQuit = function() {
+  console.log('http://www.youtube.com/watch?v=wiyYozeOoKs');
+};
+
 /**
  * Validates the entire model. Loops through all attributes
  * in the "validation" attribute of the model and triggers the proper
