@@ -188,3 +188,7 @@ This function then triggers some of the following events depending on the state 
       equalTo: function (value, attrValidation) {
         return value ===  this.get(attrValidation.validatorArg);
       }
+
+---
+
+Another Project by [PetroFeed](http://petrofeed.com)
