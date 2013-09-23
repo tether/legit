@@ -191,4 +191,7 @@ This function then triggers some of the following events depending on the state 
 
 ---
 
-Another Project by [PetroFeed](http://petrofeed.com)
+Proudly brought to you by [PetroFeed](http://PetroFeed.com).
+
+
+![Pedro](https://www.petrofeed.com/img/company/pedro.png)
