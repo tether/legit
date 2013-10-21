@@ -274,7 +274,15 @@ Legit.prototype.runValidator = function(attrValidation, value) {
  * @return {Boolean}       False if the value is falsy, true if it's truthy.
  */
 Legit.prototype.validateHasValue = function(value) {
-  return value ? true : false;
+  if (value) {
+    if (_.isString(value) && value.length === 0) {
+      return false;
+    }
+    
+    return true;
+  } else {
+    return false;
+  }
 };
 
 Legit.prototype.defaultValidators = {
